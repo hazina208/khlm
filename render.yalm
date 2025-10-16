@@ -15,6 +15,3 @@ services:
         value: EjxnlfGcezVNgeDhHeNQ
       - key: DB_PORT
         value: 3306
-      
-
-
