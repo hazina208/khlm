@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: test-mpay
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DB_HOST
+        value: bfsqweerqywhsjcp0sop-mysql.services.clever-cloud.com
+      - key: DB_NAME
+        value: bfsqweerqywhsjcp0sop
+      - key: DB_USER
+        value: unncqqf4maibfhiw
+      - key: DB_PASS
+        value: EjxnlfGcezVNgeDhHeNQ
+      - key: DB_PORT
+        value: 3306
+      
+
+
