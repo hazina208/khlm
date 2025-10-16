@@ -10,19 +10,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'] ?? '';
     $description = $_POST['description'] ?? '';
 
-    $stmt = $pdo->prepare("UPDATE sauti SET title = ?, description = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE sauti SET title = ?, description = ? WHERE id = ?");
     $success = $stmt->execute([$title, $description, $id]);
 
     // Handle video update if provided
     if (isset($_FILES['video']) && $_FILES['video']['error'] === 0) {
         $uploadDir = '../videos/sauti/';
-        $oldVideo = $pdo->query("SELECT video FROM sauti WHERE id = $id")->fetchColumn();
+        $oldVideo = $conn->query("SELECT video FROM sauti WHERE id = $id")->fetchColumn();
         if ($oldVideo) unlink($uploadDir . $oldVideo); // Delete old
 
         $fileName = time() . '_' . basename($_FILES['video']['name']);
         $uploadPath = $uploadDir . $fileName;
         if (move_uploaded_file($_FILES['video']['tmp_name'], $uploadPath)) {
-            $pdo->prepare("UPDATE sauti SET video = ? WHERE id = ?")->execute([$fileName, $id]);
+            $conn->prepare("UPDATE sauti SET video = ? WHERE id = ?")->execute([$fileName, $id]);
         }
     }
 

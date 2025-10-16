@@ -8,12 +8,12 @@ require '../config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? 0;
 
-    $oldVideo = $pdo->query("SELECT video FROM sifa WHERE id = $id")->fetchColumn();
+    $oldVideo = $conn->query("SELECT video FROM sifa WHERE id = $id")->fetchColumn();
     if ($oldVideo) {
         unlink('../videos/sifa/' . $oldVideo);
     }
 
-    $stmt = $pdo->prepare("DELETE FROM sifa WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM sifa WHERE id = ?");
     $success = $stmt->execute([$id]);
 
     echo json_encode(['success' => $success]);

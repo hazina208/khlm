@@ -8,12 +8,12 @@ require '../config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? 0;
 
-    $oldImage = $pdo->query("SELECT image FROM uzalishaji WHERE id = $id")->fetchColumn();
+    $oldImage = $conn->query("SELECT image FROM uzalishaji WHERE id = $id")->fetchColumn();
     if ($oldImage) {
         unlink('../uploads/uzalishaji' . $oldImage);
     }
 
-    $stmt = $pdo->prepare("DELETE FROM uzalishaji WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM uzalishaji WHERE id = ?");
     $success = $stmt->execute([$id]);
 
     echo json_encode(['success' => $success]);

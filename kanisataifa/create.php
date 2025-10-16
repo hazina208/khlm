@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $uploadPath = $uploadDir . $fileName;
         
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
-            $stmt = $pdo->prepare("INSERT INTO kanisataifa (title, description, image) VALUES (?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO kanisataifa (title, description, image) VALUES (?, ?, ?)");
             if ($stmt->execute([$title, $description, $fileName])) {
-                echo json_encode(['success' => true, 'id' => $pdo->lastInsertId()]);
+                echo json_encode(['success' => true, 'id' => $conn->lastInsertId()]);
             } else {
                 echo json_encode(['error' => 'Failed to save to DB']);
             }
