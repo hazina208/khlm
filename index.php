@@ -1,9 +1,6 @@
-<!--Server side code to handle  Patient Registration-->
 <?php
 	session_start();
-	include('config.php');
-    
-    
+	include('config.php');  
 ?>
 <!--End Server Side-->
 <!--End Patient Registration-->
@@ -120,7 +117,3 @@
     </body>
 
 </html>
-
-
-
-
