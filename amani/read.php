@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 
 require '../config.php';
 
-$stmt = $pdo->query("SELECT * FROM amani ORDER BY id DESC");
+$stmt = $conn->query("SELECT * FROM amani ORDER BY id DESC");
 $pictures = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $baseUrl = $_ENV['API_BASE_URL'] ?? 'http://127.0.0.1:80/kanisahalisi/amani'; // Set in .env or environment
