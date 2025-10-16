@@ -1,10 +1,6 @@
 <?php
   session_start();
   include('../assets/inc/config.php');
-  
-  
-
-
 ?>
 
 <!DOCTYPE html>
